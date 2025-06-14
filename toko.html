@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Toko - Digital Store Lumakara</title>
+        <meta
+            name="description"
+            content="Jelajahi seluruh koleksi produk futuristik kami. Filter berdasarkan kategori dan temukan item yang sempurna untuk Anda."
+        />
+
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>"
+        />
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&amp;family=Poppins:wght@300;400;600&amp;display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Stylesheet Eksternal -->
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- Elemen UI Global -->
+        <div id="menu-overlay"></div>
+        <div id="particle-fx-container"></div>
+        <canvas id="particle-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
+        <div id="notification-container"></div>
+
+        <!-- Header Utama -->
+        <header class="main-header">
+            <a href="index.html" class="logo"><i class="fa-solid fa-atom"></i> Lumakara</a>
+            
+            <nav class="main-nav" id="mobile-menu">
+                <a href="index.html"><i class="fas fa-home"></i><span>Beranda</span></a>
+                <a href="toko.html"><i class="fas fa-store"></i><span>Toko</span></a>
+                <a href="unggulan.html"><i class="fas fa-star"></i><span>Unggulan</span></a>
+                <a href="kontak.html"><i class="fas fa-envelope"></i><span>Kontak</span></a>
+            </nav>
+            
+            <div class="header-icons">
+                <a href="#" aria-label="Cari"><i class="fas fa-search"></i></a>
+                <a href="#" aria-label="Akun Pengguna"><i class="fas fa-user"></i></a>
+                <a href="#" aria-label="Keranjang Belanja" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+            </div>
+
+            <div class="mobile-controls">
+                <a href="#" aria-label="Keranjang Belanja" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+                <button id="mobile-menu-btn" aria-label="Buka Menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar Keranjang Belanja -->
+        <aside id="cart-sidebar">
+            <div class="cart-header">
+                <h3>Keranjang Anda</h3>
+                <button class="cart-close-btn" aria-label="Tutup Keranjang">&times;</button>
+            </div>
+            <div id="cart-items"></div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span id="cart-total-price">Rp 0</span>
+                </div>
+                <a href="#" class="cta-button checkout-btn">Checkout</a>
+            </div>
+        </aside>
+
+        <!-- Konten Utama Halaman Toko -->
+        <main>
+            <section id="shop" class="container">
+                <h2 class="section-title fade-in-up">Koleksi Kami</h2>
+                
+                <!-- Kontrol Filter dan Urutkan -->
+                <div class="shop-controls fade-in-up">
+                    <div class="filters-scroll-container">
+                        <div class="portfolio-filters">
+                            <button class="filter-button active" data-filter="all">Semua</button>
+                            <button class="filter-button" data-filter="cyber-wear">Cyber Wear</button>
+                            <button class="filter-button" data-filter="tech-gadget">Tech Gadget</button>
+                            <button class="filter-button" data-filter="digital-art">Digital Art</button>
+                            <button class="filter-button" data-filter="hologram">Hologram</button>
+                            <button class="filter-button" data-filter="neural">Neural Interface</button>
+                            <button class="filter-button" data-filter="exo-suit">Exo-Suit</button>
+                            <button class="filter-button" data-filter="data-chip">Data Chip</button>
+                        </div>
+                    </div>
+                    <div class="sort-container">
+                        <label for="sort-by" class="text-gray-400">Urutkan:</label>
+                        <select id="sort-by">
+                            <option value="default">Default</option>
+                            <option value="price-asc">Harga: Terendah ke Tertinggi</option>
+                            <option value="price-desc">Harga: Tertinggi ke Terendah</option>
+                            <option value="name-asc">Nama: A-Z</option>
+                            <option value="name-desc">Nama: Z-A</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Grid untuk menampilkan produk -->
+                <div id="product-grid">
+                    <!-- Produk akan dimuat di sini oleh JavaScript -->
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h4>Lumakara</h4>
+                        <p>Pengalaman belanja imersif untuk era digital.</p>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Jelajahi</h4>
+                        <ul>
+                            <li><a href="toko.html">Toko</a></li>
+                            <li><a href="unggulan.html">Unggulan</a></li>
+                            <li><a href="tentang.html">Tentang Kami</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Dukungan</h4>
+                        <ul>
+                            <li><a href="kontak.html">Kontak & FAQ</a></li>
+                            <li><a href="#">Pengiriman & Pengembalian</a></li>
+                            <li><a href="kbjpriv.html">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+                     <div class="footer-column">
+                        <h4>Ikuti Kami</h4>
+                        <div class="social-icons !justify-start mt-4">
+                            <a href="#" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <p class="copyright pt-8 border-t border-gray-800">&copy; <span id="current-year"></span> Lumakara. Semua Hak Cipta Dilindungi.</p>
+            </div>
+        </footer>
+
+        <!-- Modal Produk -->
+        <div id="product-modal" class="modal">
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Tutup modal">&times;</button>
+                <img id="modal-image" src="" alt="Gambar produk" />
+                <div>
+                    <h3 id="modal-title">Judul Produk</h3>
+                    <p id="modal-category" class="product-category"></p>
+                    <p id="modal-description">Deskripsi detail produk akan ditampilkan di sini.</p>
+                    <p id="modal-price" class="product-price">Rp 0</p>
+                    <button id="modal-add-to-cart-btn" class="cta-button add-to-cart-btn">
+                        <i class="fas fa-shopping-cart mr-2"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Library JavaScript Eksternal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+        
+        <!-- Skrip Utama -->
+        <script src="script.js"></script>
+    </body>
+</html>
+

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kontak - Digital Store Lumakara</title>
+        <meta
+            name="description"
+            content="Hubungi kami untuk pertanyaan, dukungan, atau kolaborasi. Kami siap terhubung dengan Anda."
+        />
+
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>"
+        />
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&amp;family=Poppins:wght@300;400;600&amp;display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Stylesheet Eksternal -->
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- Elemen UI Global -->
+        <div id="menu-overlay"></div>
+        <div id="particle-fx-container"></div>
+        <canvas id="particle-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
+        <div id="notification-container"></div>
+
+        <!-- Header Utama -->
+        <header class="main-header">
+            <a href="index.html" class="logo"><i class="fa-solid fa-atom"></i> Lumakara</a>
+            
+            <nav class="main-nav" id="mobile-menu">
+                <a href="index.html"><i class="fas fa-home"></i><span>Beranda</span></a>
+                <a href="toko.html"><i class="fas fa-store"></i><span>Toko</span></a>
+                <a href="unggulan.html"><i class="fas fa-star"></i><span>Unggulan</span></a>
+                <a href="kontak.html"><i class="fas fa-envelope"></i><span>Kontak</span></a>
+            </nav>
+            
+            <div class="header-icons">
+                <a href="#" aria-label="Cari"><i class="fas fa-search"></i></a>
+                <a href="#" aria-label="Akun Pengguna"><i class="fas fa-user"></i></a>
+                <a href="#" aria-label="Keranjang Belanja" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+            </div>
+
+            <div class="mobile-controls">
+                <a href="#" aria-label="Keranjang Belanja" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+                <button id="mobile-menu-btn" aria-label="Buka Menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar Keranjang Belanja -->
+        <aside id="cart-sidebar">
+            <div class="cart-header">
+                <h3>Keranjang Anda</h3>
+                <button class="cart-close-btn" aria-label="Tutup Keranjang">&times;</button>
+            </div>
+            <div id="cart-items"></div>
+            <div class.blade.php"cart-footer">
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span id="cart-total-price">Rp 0</span>
+                </div>
+                <a href="#" class="cta-button checkout-btn">Checkout</a>
+            </div>
+        </aside>
+
+        <!-- Konten Utama Halaman Kontak -->
+        <main>
+            <section id="contact-page" class="container">
+                <h2 class="section-title fade-in-up">Hubungi Kami</h2>
+                <p class="fade-in-up max-w-3xl mx-auto text-center mb-16 text-gray-400">
+                    Ada pertanyaan? Butuh bantuan atau ingin berkolaborasi? Jaringan kami selalu terbuka. Kirim sinyal Anda, dan kami akan merespons.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                    <!-- Kolom Informasi Kontak -->
+                    <div class="contact-info fade-in-up" style="animation-delay: 0.2s;">
+                        <h3 class="text-2xl font-bold mb-6 text-white">Pusat Komunikasi</h3>
+                        <ul class="space-y-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-2xl text-cyan-400 w-8 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-200">Alamat Pangkalan Data</h4>
+                                    <p class="text-gray-400">Cyber-Nexus Tower, Lt. 101, Sektor 7G, Neo-Jakarta, 12045</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-phone-alt text-2xl text-cyan-400 w-8 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-200">Saluran Komunikasi Audio</h4>
+                                    <p class="text-gray-400">+62 812-3456-7890</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-envelope text-2xl text-cyan-400 w-8 mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-200">Terminal Email</h4>
+                                    <p class="text-gray-400">connect@lumakara.tech</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="mt-10 pt-6 border-t border-gray-800">
+                            <h4 class="font-bold text-lg mb-4 text-gray-200">Jejak Digital Kami</h4>
+                            <div class="social-icons !justify-start">
+                                <a href="#" aria-label="GitHub" class="hover:text-magenta-500"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="LinkedIn" class="hover:text-magenta-500"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="Twitter" class="hover:text-magenta-500"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="Instagram" class="hover:text-magenta-500"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Kolom Formulir Kontak -->
+                    <div class="contact-form fade-in-up" style="animation-delay: 0.4s;">
+                        <form id="main-contact-form">
+                            <div class="mb-5">
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-400">Nama Lengkap</label>
+                                <input type="text" id="name" name="name" required class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white transition-all duration-300">
+                            </div>
+                            <div class="mb-5">
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-400">Alamat Email</label>
+                                <input type="email" id="email" name="email" required class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white transition-all duration-300">
+                            </div>
+                            <div class="mb-5">
+                                <label for="subject" class="block mb-2 text-sm font-medium text-gray-400">Subjek Pesan</label>
+                                <input type="text" id="subject" name="subject" required class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white transition-all duration-300">
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block mb-2 text-sm font-medium text-gray-400">Pesan Anda</label>
+                                <textarea id="message" name="message" rows="5" required class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white transition-all duration-300"></textarea>
+                            </div>
+                            <button type="submit" class="cta-button w-full">Kirim Sinyal</button>
+                        </form>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h4>Lumakara</h4>
+                        <p>Pengalaman belanja imersif untuk era digital.</p>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Jelajahi</h4>
+                        <ul>
+                            <li><a href="toko.html">Toko</a></li>
+                            <li><a href="unggulan.html">Unggulan</a></li>
+                            <li><a href="tentang.html">Tentang Kami</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Dukungan</h4>
+                        <ul>
+                            <li><a href="kontak.html">Kontak & FAQ</a></li>
+                            <li><a href="#">Pengiriman & Pengembalian</a></li>
+                            <li><a href="kbjpriv.html">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+                     <div class="footer-column">
+                        <h4>Ikuti Kami</h4>
+                        <div class="social-icons !justify-start mt-4">
+                            <a href="#" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <p class="copyright pt-8 border-t border-gray-800">&copy; <span id="current-year"></span> Lumakara. Semua Hak Cipta Dilindungi.</p>
+            </div>
+        </footer>
+
+        <!-- Modal tidak diperlukan di halaman kontak, namun dibiarkan untuk konsistensi skrip global -->
+        <div id="product-modal" class="modal"></div>
+
+        <!-- Library JavaScript Eksternal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+        
+        <!-- Skrip Utama -->
+        <script src="script.js"></script>
+    </body>
+</html>
+

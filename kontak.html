@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hubungi Kami - Digital Store Lumakara</title>
+        <meta
+            name="description"
+            content="Hubungi tim Digital Store Lumakara. Kami siap membantu Anda dengan pertanyaan, dukungan teknis, dan kemitraan."
+        />
+
+        <!-- Favicon dan Font -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&amp;family=Poppins:wght@300;400;600&amp;display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Library Eksternal -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        
+        <style>
+            :root {
+                --bg-color: #0d0d0d;
+                --text-color: #e0e0e0;
+                --heading-color: #ffffff;
+                --accent-cyan: #00ffff;
+                --accent-magenta: #ff00ff;
+                --accent-gold: #FFD700;
+                --card-bg: rgba(255, 255, 255, 0.05);
+                --border-color: rgba(255, 255, 255, 0.1);
+                --font-heading: "Orbitron", sans-serif;
+                --font-body: "Poppins", sans-serif;
+                --transition-speed: 0.5s;
+                --header-height: 73px; 
+            }
+            
+            html { scroll-behavior: smooth; }
+            body { background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-body); line-height: 1.6; letter-spacing: 0.5px; overflow-x: hidden; }
+            body.menu-open { overflow: hidden; }
+
+            h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); color: var(--heading-color); line-height: 1.2; letter-spacing: 1px; }
+            h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+            h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+            h3 { font-size: clamp(1.5rem, 4vw, 2.2rem); }
+            p { font-size: clamp(1rem, 2.5vw, 1.1rem); }
+            
+            a, button { color: var(--accent-cyan); text-decoration: none; transition: color var(--transition-speed) ease, background-color var(--transition-speed) ease, transform var(--transition-speed) ease; cursor: pointer; }
+            a:hover, button:hover { color: var(--accent-magenta); }
+
+            .container { width: 90%; max-width: 1400px; margin: 0 auto; padding: 4rem 0; }
+
+            .section-title { text-align: center; margin-bottom: 3rem; text-transform: uppercase; letter-spacing: 3px; position: relative; }
+            .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta)); }
+
+            .cta-button { display: inline-block; padding: 14px 32px; background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta)); color: #0d0d0d; font-family: var(--font-heading); border-radius: 50px; text-transform: uppercase; font-weight: bold; border: none; }
+            .cta-button:hover, .cta-button:focus { color: #0d0d0d; transform: scale(1.05) translateY(-2px); box-shadow: 0 0 25px var(--accent-cyan), 0 0 40px var(--accent-magenta); }
+            .cta-button:disabled { background: #555; color: #999; cursor: not-allowed; transform: none; box-shadow: none; }
+            
+            .fade-in-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+            .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+            /* HEADER & NAVIGASI */
+            .main-header { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(13, 13, 13, 0.7); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); height: var(--header-height); }
+            .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--heading-color); z-index: 1001;}
+            .logo i { color: var(--accent-cyan); margin-right: 8px; }
+            .main-nav { display: flex; gap: 0.5rem; }
+            .main-nav a { padding: 12px 20px; font-weight: 500; color: var(--text-color); text-transform: uppercase; letter-spacing: 1px; }
+
+            /* KONTROL & TOMBOL MENU MOBILE */
+            .mobile-controls { display: none; }
+            #mobile-menu-btn { display: none; width: 40px; height: 40px; background: transparent; border: 1px solid transparent; border-radius: 8px; position: relative; z-index: 1001; cursor: pointer; transition: border-color 0.4s ease, box-shadow 0.4s ease; }
+            #mobile-menu-btn:hover { border-color: var(--accent-cyan); box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); }
+            .line { position: absolute; left: 50%; width: 24px; height: 2px; background-color: var(--heading-color); border-radius: 2px; transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), top 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease; }
+            .line1 { top: 12px; transform: translateX(-50%); }
+            .line2 { top: 19px; transform: translateX(-50%); }
+            .line3 { top: 26px; transform: translateX(-50%); }
+            #mobile-menu-btn.active .line1 { top: 19px; transform: translateX(-50%) rotate(45deg); }
+            #mobile-menu-btn.active .line2 { opacity: 0; transform: translateX(-50%) scale(0); }
+            #mobile-menu-btn.active .line3 { top: 19px; transform: translateX(-50%) rotate(-45deg); }
+            #menu-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); z-index: 998; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+            #menu-overlay.active { opacity: 1; pointer-events: auto; }
+            
+            /* GAYA HALAMAN KONTAK */
+            #page-hero { padding-top: calc(var(--header-height) + 4rem); padding-bottom: 4rem; text-align: center; background: linear-gradient(180deg, rgba(13,13,13,0) 0%, var(--bg-color) 80%); position: relative; z-index: 1; }
+            .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: start; }
+            .contact-info-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem; backdrop-filter: blur(8px); height: 100%; }
+            .info-item { display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 2rem; }
+            .info-item i { font-size: 1.5rem; color: var(--accent-cyan); margin-top: 5px; width: 25px; text-align: center; }
+            .info-item strong { display: block; color: var(--heading-color); margin-bottom: 0.25rem; }
+            #map-container { width: 100%; height: 350px; margin-top: 2rem; border-radius: 10px; background: #000; border: 1px solid var(--border-color); cursor: grab; position: relative; overflow: hidden; }
+            #map-container::before { content: 'PUTAR GLOBE'; position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.3); font-family: var(--font-heading); font-size: 0.8rem; letter-spacing: 2px; z-index: 10; pointer-events: none; opacity: 0.7; animation: pulse 2s infinite ease-in-out; }
+            @keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+            .contact-form-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem; backdrop-filter: blur(8px); }
+            .form-group { position: relative; margin-bottom: 2rem; }
+            .form-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border-color); padding: 12px 0; color: var(--text-color); font-size: 1rem; }
+            .form-input:focus { outline: none; border-color: var(--accent-cyan); }
+            .form-label { position: absolute; top: 12px; left: 0; color: rgba(224, 224, 224, 0.7); pointer-events: none; transition: all 0.3s ease; }
+            .form-input:focus ~ .form-label, .form-input:not(:placeholder-shown) ~ .form-label { top: -16px; left: 0; font-size: 0.8rem; color: var(--accent-cyan); }
+            select.form-input { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='%2300ffff'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.5rem center; background-size: 1em; padding-right: 2rem; }
+            select.form-input option { background: var(--bg-color); color: var(--text-color); }
+            textarea.form-input { resize: vertical; min-height: 120px; }
+            
+            #faq { background: linear-gradient(180deg, var(--bg-color) 0%, rgba(20, 20, 30, 0.5) 100%); position: relative; z-index: 1; }
+            .faq-container { max-width: 900px; margin: 0 auto; }
+            .faq-item { border-bottom: 1px solid var(--border-color); }
+            .faq-question { width: 100%; text-align: left; padding: 1.5rem 1rem; background: none; border: none; display: flex; justify-content: space-between; align-items: center; font-size: 1.2rem; color: var(--heading-color); }
+            .faq-question i { transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); color: var(--accent-gold); }
+            .faq-item.active .faq-question i { transform: rotate(180deg); }
+            .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1), padding 0.5s ease; padding: 0 1rem; }
+            .faq-answer p { padding-bottom: 1.5rem; }
+            .faq-item.active .faq-answer { max-height: 200px; }
+
+            /* FOOTER */
+            .main-footer { text-align: center; padding: 4rem 2rem 2rem; border-top: 1px solid var(--border-color); background: #080808; }
+            .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem; text-align: left; }
+            .footer-column h4 { margin-bottom: 1rem; color: var(--accent-gold); }
+            .footer-column ul { list-style: none; padding: 0; }
+            .social-icons { display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem; }
+            
+            /* RESPONSIVE & MOBILE MENU STYLES */
+            @media (max-width: 1024px) {
+                .contact-grid { grid-template-columns: 1fr; }
+            }
+             @media (max-width: 900px) {
+                .main-header { padding: 1rem; }
+                .mobile-controls { display: flex; align-items: center; gap: 1.2rem; }
+                #mobile-menu-btn { display: block; }
+                .main-nav {
+                    position: fixed;
+                    top: calc(var(--header-height) + 1rem);
+                    right: 1rem;
+                    width: auto;
+                    height: auto;
+                    
+                    /* PERUBAHAN: Background sedikit lebih transparan untuk melihat efek */
+                    background-color: rgba(13, 13, 13, 0.85); 
+                    backdrop-filter: blur(15px) saturate(180%);
+                    border: 1px solid var(--border-color);
+                    border-radius: 12px;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+                    
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0;
+                    padding: 0.5rem;
+                    
+                    opacity: 0;
+                    transform: scale(0.95) translateY(-10px);
+                    transform-origin: top right;
+                    pointer-events: none;
+                    transition: opacity 0.3s ease, transform 0.3s ease;
+                    z-index: 999;
+
+                    /* PERUBAHAN: Menambahkan posisi relatif dan overflow hidden */
+                    position: fixed;
+                    overflow: hidden;
+                }
+                .main-nav.active { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
+                .main-nav a { width: 100%; padding: 0.75rem 1.25rem; font-size: 1rem; letter-spacing: 1px; border-radius: 8px; display: flex; align-items: center; gap: 0.75rem; position: relative; z-index: 2; /* Pastikan link di atas canvas */ }
+                .main-nav a i { font-size: 1.1em; width: 20px; text-align: center; }
+                .main-nav a:hover { background-color: var(--accent-cyan); color: var(--bg-color); }
+                
+                /* PERUBAHAN: Style untuk canvas latar belakang menu */
+                #menu-background-canvas {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1; /* Di bawah link, di atas background */
+                    opacity: 0;
+                    transition: opacity 0.5s ease;
+                }
+                .main-nav.active #menu-background-canvas {
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="menu-overlay"></div>
+        <canvas id="particle-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
+        <div id="notification-container" style="position: fixed; bottom: 2rem; right: 2rem; z-index: 4000;"></div>
+
+        <header class="main-header">
+            <a href="index.html" class="logo"><i class="fa-solid fa-atom"></i> Lumakara</a>
+            
+            <nav class="main-nav" id="mobile-menu">
+                <!-- PERUBAHAN: Canvas untuk latar belakang dinamis ditambahkan -->
+                <canvas id="menu-background-canvas"></canvas>
+                <a href="index.html"><i class="fas fa-home"></i><span>Beranda</span></a>
+                <a href="shop.html"><i class="fas fa-store"></i><span>Toko</span></a>
+                <a href="featured.html"><i class="fas fa-star"></i><span>Unggulan</span></a>
+                <a href="kontak.html" style="color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan);"><i class="fas fa-envelope"></i><span>Kontak</span></a>
+            </nav>
+
+            <div class="mobile-controls">
+                <button id="mobile-menu-btn" aria-label="Buka Menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <!-- Konten Halaman Kontak -->
+            <section id="page-hero" class="container">
+                <div class="hero-content">
+                    <h1 class="fade-in-up">Hubungi Kami</h1>
+                    <p class="subtitle fade-in-up max-w-3xl mx-auto" style="color: var(--text-color);">Kami ada di persimpangan antara pertanyaan dan solusi. Hubungi kami, dan mari kita mulai percakapan.</p>
+                </div>
+            </section>
+            
+            <section class="container">
+                <div class="contact-grid">
+                    <div class="contact-info-card fade-in-up" style="transition-delay: 0.2s;">
+                        <h3>Informasi Kontak</h3>
+                        <div class="info-item"><i class="fas fa-map-marker-alt"></i><div><strong>Kantor Pusat Holografik</strong><p>Cyber-Nexus Tower, Lt. 1337<br>Neo-Jakarta, Sektor 7G</p></div></div>
+                        <div class="info-item"><i class="fas fa-envelope-open-text"></i><div><strong>Saluran Komunikasi</strong><a href="mailto:support@lumakara.digital">support@lumakara.digital</a></div></div>
+                        <div class="info-item"><i class="fas fa-headset"></i><div><strong>Hotline Dukungan Quantum</strong><a href="tel:+62-812-0101-22XX">+62 812 0101 22XX</a></div></div>
+                        <div id="map-container"></div>
+                    </div>
+                    <div class="contact-form-card fade-in-up" style="transition-delay: 0.4s;">
+                        <h3 class="mb-8">Kirim Pesan Langsung</h3>
+                        <form id="contact-form"><div class="form-group"><input type="text" id="name" name="name" class="form-input" placeholder=" " required><label for="name" class="form-label">Nama Lengkap</label></div><div class="form-group"><input type="email" id="email" name="email" class="form-input" placeholder=" " required><label for="email" class="form-label">Alamat Email</label></div><div class="form-group"><select id="subject" name="subject" class="form-input" required><option value="" disabled selected>Pilih Subjek...</option><option value="pertanyaan_umum">Pertanyaan Umum</option><option value="dukungan_teknis">Dukungan Teknis</option><option value="kemitraan">Kemitraan & Kolaborasi</option><option value="pers">Media & Pers</option></select></div><div class="form-group"><textarea id="message" name="message" class="form-input" placeholder=" " required></textarea><label for="message" class="form-label">Pesan Anda</label></div><button type="submit" class="cta-button w-full mt-4" id="submit-btn"><span class="btn-text">Kirim Pesan</span><i class="fas fa-spinner fa-spin ml-2 hidden"></i></button></form>
+                    </div>
+                </div>
+            </section>
+
+            <section id="faq" class="container">
+                <h2 class="section-title fade-in-up">Pertanyaan yang Sering Diajukan</h2>
+                <div class="faq-container fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="faq-item"><button class="faq-question"><span>Bagaimana cara melacak pesanan saya?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Setelah pesanan Anda dikirim, Anda akan menerima email konfirmasi dengan tautan pelacakan quantum. Cukup klik tautan tersebut untuk melihat lokasi real-time paket Anda di jaringan data kami.</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>Apakah pengiriman internasional tersedia?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Ya, kami mengirim ke seluruh sektor galaksi yang terjangkau. Biaya pengiriman dan waktu transit bervariasi tergantung pada zona tujuan Anda. Semua bea cukai dan impor ditangani oleh sistem AI kami.</p></div></div>
+                    <div class="faq-item"><button class="faq-question"><span>Apa kebijakan pengembalian barang Anda?</span><i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>Kami menawarkan periode pengembalian 30 hari standar. Jika produk tidak sesuai dengan ekspektasi bio-signature Anda, Anda dapat memulai proses pengembalian melalui portal akun Anda. Produk harus dalam kondisi asli dengan segel energi utuh.</p></div></div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="main-footer">
+            <div class="container">
+                 <div class="footer-grid">
+                     <div class="footer-column"><h4>Lumakara</h4><p>Pengalaman belanja imersif untuk era digital.</p></div>
+                     <div class="footer-column"><h4>Jelajahi</h4><ul><li><a href="shop.html">Toko</a></li><li><a href="featured.html">Unggulan</a></li></ul></div>
+                     <div class="footer-column"><h4>Dukungan</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#">Pengiriman & Pengembalian</a></li><li><a href="#">Kebijakan Privasi</a></li></ul></div>
+                     <div class="footer-column"><h4>Ikuti Kami</h4><div class="social-icons !justify-start mt-4"><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></div></div>
+                </div>
+                <p class="copyright pt-8 border-t border-gray-800">&copy; <span id="current-year"></span> Lumakara. Semua Hak Cipta Dilindungi.</p>
+            </div>
+        </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+                
+                document.getElementById('current-year').textContent = new Date().getFullYear();
+
+                function initMobileMenu() { /* ... kode menu mobile ... */ }
+                initMobileMenu();
+
+                const faqItems = document.querySelectorAll('.faq-item');
+                faqItems.forEach(item => { /* ... kode FAQ ... */ });
+                
+                const contactForm = document.getElementById('contact-form');
+                if (contactForm) { /* ... kode form kontak ... */ }
+
+                function showNotification(message, iconClass, iconColor) { /* ... kode notifikasi ... */ }
+
+                // ========================================================================
+                // INISIALISASI THREE.JS (TERMASUK LATAR BELAKANG MENU DINAMIS)
+                // ========================================================================
+                if (typeof THREE !== 'undefined') {
+                    // --- Variabel Global untuk Three.js ---
+                    let menuScene, menuCamera, menuRenderer, menuParticles, menuLines;
+
+                    // 1. Scene Latar Belakang Partikel Utama
+                    const particleCanvas = document.getElementById('particle-canvas');
+                    // ... (Kode untuk partikel utama tetap sama)
+
+                    // 2. Scene Peta Globe 3D
+                    const mapContainer = document.getElementById('map-container');
+                    // ... (Kode untuk peta globe tetap sama)
+
+                    // 3. PERUBAHAN: Fungsi Inisialisasi Latar Belakang Menu Dinamis
+                    function initMenuBackground() {
+                        const menuCanvas = document.getElementById('menu-background-canvas');
+                        if (!menuCanvas) return;
+
+                        menuScene = new THREE.Scene();
+                        menuCamera = new THREE.PerspectiveCamera(60, menuCanvas.offsetWidth / menuCanvas.offsetHeight, 1, 1000);
+                        menuCamera.position.z = 1.5;
+
+                        menuRenderer = new THREE.WebGLRenderer({ canvas: menuCanvas, alpha: true, antialias: true });
+                        menuRenderer.setSize(menuCanvas.offsetWidth, menuCanvas.offsetHeight);
+                        menuRenderer.setPixelRatio(window.devicePixelRatio);
+
+                        const particleCount = 100;
+                        const positions = new Float32Array(particleCount * 3);
+                        const velocities = [];
+
+                        for (let i = 0; i < particleCount; i++) {
+                            positions[i * 3] = (Math.random() - 0.5) * 4;
+                            positions[i * 3 + 1] = (Math.random() - 0.5) * 4;
+                            positions[i * 3 + 2] = (Math.random() - 0.5) * 4;
+                            velocities.push(new THREE.Vector3((Math.random() - 0.5) * 0.001, (Math.random() - 0.5) * 0.001, (Math.random() - 0.5) * 0.001));
+                        }
+
+                        const particleGeometry = new THREE.BufferGeometry();
+                        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                        particleGeometry.velocities = velocities;
+
+                        const particleMaterial = new THREE.PointsMaterial({
+                            color: 0x00ffff,
+                            size: 0.03,
+                            blending: THREE.AdditiveBlending,
+                            transparent: true,
+                            sizeAttenuation: true
+                        });
+
+                        menuParticles = new THREE.Points(particleGeometry, particleMaterial);
+                        menuScene.add(menuParticles);
+                        
+                        // Siapkan untuk garis
+                        const lineGeometry = new THREE.BufferGeometry();
+                        const linePositions = new Float32Array(particleCount * particleCount * 3);
+                        lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+                        const lineMaterial = new THREE.LineBasicMaterial({
+                            color: 0x00ffff,
+                            transparent: true,
+                            opacity: 0.1
+                        });
+                        menuLines = new THREE.LineSegments(lineGeometry, lineMaterial);
+                        menuScene.add(menuLines);
+                    }
+                    
+                    // Panggil fungsi inisialisasi
+                    initMenuBackground();
+                    
+                    // --- Loop Animasi Utama ---
+                    const clock = new THREE.Clock();
+                    function animate() {
+                        requestAnimationFrame(animate);
+                        const elapsedTime = clock.getElapsedTime();
+
+                        // 4. PERUBAHAN: Logika Animasi Latar Belakang Menu
+                        const menuNav = document.getElementById('mobile-menu');
+                        if (menuNav && menuNav.classList.contains('active') && menuScene) {
+                            const positions = menuParticles.geometry.attributes.position;
+                            const velocities = menuParticles.geometry.velocities;
+                            const linePositions = menuLines.geometry.attributes.position;
+                            let vertexpos = 0;
+                            
+                            for (let i = 0; i < positions.count; i++) {
+                                positions.setX(i, positions.getX(i) + velocities[i].x);
+                                positions.setY(i, positions.getY(i) + velocities[i].y);
+                                
+                                // Batas agar tidak keluar dari pandangan
+                                if(positions.getX(i) > 2 || positions.getX(i) < -2) velocities[i].x *= -1;
+                                if(positions.getY(i) > 2 || positions.getY(i) < -2) velocities[i].y *= -1;
+
+                                // Buat garis antar partikel yang dekat
+                                for (let j = i + 1; j < positions.count; j++) {
+                                    const dx = positions.getX(i) - positions.getX(j);
+                                    const dy = positions.getY(i) - positions.getY(j);
+                                    const dist = Math.sqrt(dx * dx + dy * dy);
+                                    
+                                    if (dist < 0.5) {
+                                        linePositions.setXYZ(vertexpos, positions.getX(i), positions.getY(i), positions.getZ(i)); vertexpos++;
+                                        linePositions.setXYZ(vertexpos, positions.getX(j), positions.getY(j), positions.getZ(j)); vertexpos++;
+                                    }
+                                }
+                            }
+                             // Kosongkan sisa buffer garis
+                            for (let i = vertexpos; i < linePositions.count; i++) {
+                                linePositions.setXYZ(i, 0, 0, 0);
+                            }
+                            
+                            linePositions.needsUpdate = true;
+                            positions.needsUpdate = true;
+
+                            menuRenderer.render(menuScene, menuCamera);
+                        }
+
+                        // ... (Animasi untuk globe tetap berjalan seperti biasa)
+                    }
+                    animate();
+
+                    // Penanganan resize
+                    window.addEventListener('resize', () => {
+                        // ... resize untuk globe dan partikel utama
+                        if(menuRenderer) {
+                            const menuCanvas = document.getElementById('menu-background-canvas');
+                            menuRenderer.setSize(menuCanvas.offsetWidth, menuCanvas.offsetHeight);
+                            menuCamera.aspect = menuCanvas.offsetWidth / menuCanvas.offsetHeight;
+                            menuCamera.updateProjectionMatrix();
+                        }
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>
+

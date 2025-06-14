@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tentang Kami - Digital Store Lumakara</title>
+        <meta
+            name="description"
+            content="Kenali visi, tim, dan perjalanan di balik Lumakara. Kami adalah persimpangan antara teknologi, seni, dan imajinasi."
+        />
+
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>"
+        />
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&amp;family=Poppins:wght@300;400;600&amp;display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Stylesheet Eksternal -->
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- Elemen UI Global -->
+        <div id="menu-overlay"></div>
+        <div id="particle-fx-container"></div>
+        <canvas id="particle-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
+        <div id="notification-container"></div>
+
+        <!-- Header Utama -->
+        <header class="main-header">
+            <a href="index.html" class="logo"><i class="fa-solid fa-atom"></i> Lumakara</a>
+            
+            <nav class="main-nav" id="mobile-menu">
+                <a href="index.html"><i class="fas fa-home"></i><span>Beranda</span></a>
+                <a href="toko.html"><i class="fas fa-store"></i><span>Toko</span></a>
+                <a href="unggulan.html"><i class="fas fa-star"></i><span>Unggulan</span></a>
+                <a href="kontak.html"><i class="fas fa-envelope"></i><span>Kontak</span></a>
+            </nav>
+            
+            <div class="header-icons">
+                <a href="#" aria-label="Cari"><i class="fas fa-search"></i></a>
+                <a href="#" aria-label="Akun Pengguna"><i class="fas fa-user"></i></a>
+                <a href="#" aria-label="Keranjang Belanja" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+            </div>
+
+            <div class="mobile-controls">
+                <a href="#" aria-label="Keranjang Belanja" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+                <button id="mobile-menu-btn" aria-label="Buka Menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar Keranjang Belanja -->
+        <aside id="cart-sidebar">
+            <div class="cart-header">
+                <h3>Keranjang Anda</h3>
+                <button class="cart-close-btn" aria-label="Tutup Keranjang">&times;</button>
+            </div>
+            <div id="cart-items"></div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span id="cart-total-price">Rp 0</span>
+                </div>
+                <a href="#" class="cta-button checkout-btn">Checkout</a>
+            </div>
+        </aside>
+
+        <!-- Konten Utama Halaman Tentang Kami -->
+        <main>
+            <!-- Bagian Hero Halaman Tentang -->
+            <section id="about-hero" class="container text-center pt-24 pb-16">
+                 <h1 class="section-title !text-5xl md:!text-7xl fade-in-up">Manifesto Kami</h1>
+                 <p class="fade-in-up max-w-4xl mx-auto text-lg text-gray-300 mt-8" style="animation-delay: 0.2s;">
+                    Kami bukan sekadar toko. Kami adalah kurator masa depan, sebuah kolektif yang percaya bahwa batas antara dunia digital dan realita diciptakan untuk dilampaui.
+                 </p>
+            </section>
+            
+            <!-- Bagian Visi -->
+            <section id="vision" class="container">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="vision-image-container fade-in-up" style="animation-delay: 0.4s;">
+                        <!-- Placeholder untuk visualisasi 3D atau gambar sinematik -->
+                        <div class="aspect-w-16 aspect-h-9 bg-gray-900 border border-cyan-500/30 rounded-lg flex items-center justify-center">
+                             <i class="fas fa-brain text-8xl text-cyan-500/50"></i>
+                        </div>
+                    </div>
+                    <div class="fade-in-up" style="animation-delay: 0.6s;">
+                        <h2 class="text-4xl font-bold mb-6">Visi Kami: Merajut Realita Baru</h2>
+                        <p class="mb-4 text-gray-400">Di Lumakara, kami membayangkan sebuah dunia di mana seni, teknologi, dan identitas manusia menyatu dalam harmoni yang sempurna. Misi kami adalah untuk menyediakan artefak—bukan sekadar produk—yang menjadi jembatan menuju masa depan tersebut. Setiap item dalam koleksi kami adalah sebuah ide, sebuah fragmen dari esok hari yang bisa Anda miliki hari ini.</p>
+                        <p class="text-gray-400">Kami memberdayakan para pelopor, para pemimpi, dan para pemberani untuk mengekspresikan diri mereka dengan cara yang belum pernah ada sebelumnya.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bagian Tim -->
+            <section id="team" class="container">
+                 <h2 class="section-title fade-in-up">Para Arsitek</h2>
+                 <p class="fade-in-up max-w-3xl mx-auto text-center mb-16 text-gray-400">
+                    Di balik setiap sirkuit dan baris kode, ada para visioner yang mendedikasikan diri mereka untuk mewujudkan Lumakara.
+                </p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Kartu Profil Tim 1 -->
+                    <div class="team-card bg-gray-900/50 border border-gray-700 p-6 rounded-lg text-center backdrop-blur-sm fade-in-up" style="animation-delay: 0.2s;">
+                        <img src="https://placehold.co/200x200/0d0d0d/00ffff?text=A" alt="Foto Profil Aris" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-cyan-400">
+                        <h3 class="text-xl font-bold text-white">Aris</h3>
+                        <p class="text-cyan-400 font-medium">Chief Visionary Officer</p>
+                        <p class="text-gray-400 mt-3 text-sm">"Kita tidak menjual produk, kita menjual kemungkinan. Setiap artefak adalah kunci untuk membuka pintu persepsi baru."</p>
+                    </div>
+                    <!-- Kartu Profil Tim 2 -->
+                    <div class="team-card bg-gray-900/50 border border-gray-700 p-6 rounded-lg text-center backdrop-blur-sm fade-in-up" style="animation-delay: 0.4s;">
+                        <img src="https://placehold.co/200x200/0d0d0d/ff00ff?text=B" alt="Foto Profil Budi" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-magenta-500">
+                        <h3 class="text-xl font-bold text-white">Budi</h3>
+                        <p class="text-magenta-500 font-medium">Lead Design Architect</p>
+                        <p class="text-gray-400 mt-3 text-sm">"Desain adalah bahasa masa depan. Saya menerjemahkan mimpi menjadi bentuk dan fungsi yang elegan."</p>
+                    </div>
+                    <!-- Kartu Profil Tim 3 -->
+                    <div class="team-card bg-gray-900/50 border border-gray-700 p-6 rounded-lg text-center backdrop-blur-sm fade-in-up" style="animation-delay: 0.6s;">
+                        <img src="https://placehold.co/200x200/0d0d0d/FFD700?text=C" alt="Foto Profil Cici" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-gold-400">
+                        <h3 class="text-xl font-bold text-white">Cici</h3>
+                        <p class="text-gold-400 font-medium">Head of Cybernetics</p>
+                        <p class="text-gray-400 mt-3 text-sm">"Teknologi harus terasa seperti sihir. Saya memastikan setiap interaksi terasa intuitif, kuat, dan menakjubkan."</p>
+                    </div>
+                 </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h4>Lumakara</h4>
+                        <p>Pengalaman belanja imersif untuk era digital.</p>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Jelajahi</h4>
+                        <ul>
+                            <li><a href="toko.html">Toko</a></li>
+                            <li><a href="unggulan.html">Unggulan</a></li>
+                            <li><a href="tentang.html">Tentang Kami</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Dukungan</h4>
+                        <ul>
+                            <li><a href="kontak.html">Kontak & FAQ</a></li>
+                            <li><a href="#">Pengiriman & Pengembalian</a></li>
+                            <li><a href="kbjpriv.html">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+                     <div class="footer-column">
+                        <h4>Ikuti Kami</h4>
+                        <div class="social-icons !justify-start mt-4">
+                            <a href="#" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <p class="copyright pt-8 border-t border-gray-800">&copy; <span id="current-year"></span> Lumakara. Semua Hak Cipta Dilindungi.</p>
+            </div>
+        </footer>
+
+        <!-- Modal tidak diperlukan di halaman ini, namun dibiarkan untuk konsistensi skrip global -->
+        <div id="product-modal" class="modal"></div>
+
+        <!-- Library JavaScript Eksternal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+        
+        <!-- Skrip Utama -->
+        <script src="script.js"></script>
+    </body>
+</html>
+

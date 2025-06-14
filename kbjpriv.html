@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Protokol Privasi - Digital Store Lumakara</title>
+        <meta
+            name="description"
+            content="Pelajari bagaimana kami melindungi dan mengelola jejak digital Anda. Transparansi adalah inti dari protokol kami."
+        />
+
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>"
+        />
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&amp;family=Poppins:wght@300;400;600&amp;display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Stylesheet Eksternal & Gaya Kustom untuk Halaman Ini -->
+        <link rel="stylesheet" href="style.css" />
+        <style>
+            /* Gaya khusus untuk daftar kebijakan agar lebih futuristik */
+            .policy-list li {
+                position: relative;
+                padding-left: 28px;
+                margin-bottom: 0.75rem;
+            }
+            .policy-list li::before {
+                content: '⬢'; /* Simbol heksagon sebagai penanda */
+                position: absolute;
+                left: 0;
+                top: 5px;
+                font-size: 0.9em;
+                color: var(--accent-cyan);
+                text-shadow: 0 0 6px var(--accent-cyan);
+                transition: transform 0.3s ease, text-shadow 0.3s ease;
+            }
+            .policy-list li:hover::before {
+                transform: rotate(180deg) scale(1.2);
+                text-shadow: 0 0 10px var(--accent-magenta);
+            }
+            .policy-content h3 {
+                color: var(--accent-cyan);
+                margin-top: 2.5rem;
+                margin-bottom: 1rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid var(--border-color);
+                font-size: 1.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Elemen UI Global -->
+        <div id="menu-overlay"></div>
+        <div id="particle-fx-container"></div>
+        <canvas id="particle-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
+        <div id="notification-container"></div>
+
+        <!-- Header Utama -->
+        <header class="main-header">
+            <a href="index.html" class="logo"><i class="fa-solid fa-atom"></i> Lumakara</a>
+            
+            <nav class="main-nav" id="mobile-menu">
+                <a href="index.html"><i class="fas fa-home"></i><span>Beranda</span></a>
+                <a href="toko.html"><i class="fas fa-store"></i><span>Toko</span></a>
+                <a href="unggulan.html"><i class="fas fa-star"></i><span>Unggulan</span></a>
+                <a href="kontak.html"><i class="fas fa-envelope"></i><span>Kontak</span></a>
+            </nav>
+            
+            <div class="header-icons">
+                <a href="#" aria-label="Cari"><i class="fas fa-search"></i></a>
+                <a href="#" aria-label="Akun Pengguna"><i class="fas fa-user"></i></a>
+                <a href="#" aria-label="Keranjang Belanja" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+            </div>
+
+            <div class="mobile-controls">
+                <a href="#" aria-label="Keranjang Belanja" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+                <button id="mobile-menu-btn" aria-label="Buka Menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar Keranjang Belanja -->
+        <aside id="cart-sidebar">
+            <div class="cart-header">
+                <h3>Keranjang Anda</h3>
+                <button class="cart-close-btn" aria-label="Tutup Keranjang">&times;</button>
+            </div>
+            <div id="cart-items"></div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span id="cart-total-price">Rp 0</span>
+                </div>
+                <a href="#" class="cta-button checkout-btn">Checkout</a>
+            </div>
+        </aside>
+
+        <!-- Konten Utama Halaman Kebijakan Privasi -->
+        <main>
+            <section id="policy-page" class="container">
+                <h2 class="section-title fade-in-up">Protokol Transparansi Data</h2>
+                <p class="fade-in-up max-w-3xl mx-auto text-center mb-12 text-gray-400">
+                    Di Lumakara, kedaulatan data Anda adalah prioritas. Protokol ini menjelaskan bagaimana kami mengakuisisi, memanfaatkan, dan melindungi jejak digital Anda saat Anda melintasi domain kami.
+                </p>
+                
+                <div class="policy-content max-w-4xl mx-auto bg-gray-900/50 border border-gray-700/50 p-8 md:p-12 rounded-lg backdrop-blur-sm fade-in-up" style="animation-delay: 0.2s;">
+                    <h3>1.0 Akuisisi Sinyal Data</h3>
+                    <p>Kami mengumpulkan sinyal data yang Anda transmisikan secara sukarela, seperti: identitas (nama, email), data transaksi, dan log komunikasi saat Anda terhubung dengan terminal kami. Kami juga merekam data navigasi anonim untuk mengoptimalkan pengalaman antarmuka.</p>
+
+                    <h3>2.0 Pemanfaatan Sinyal Data</h3>
+                    <p>Sinyal data Anda dimanfaatkan untuk tujuan berikut:</p>
+                    <ul class="policy-list mt-4 text-gray-300">
+                        <li>Memproses dan memvalidasi transmisi (pesanan dan pembayaran).</li>
+                        <li>Mengkalibrasi dan mempersonalisasi antarmuka pengguna (UI) sesuai preferensi Anda.</li>
+                        <li>Mengirimkan pembaruan protokol, artefak baru, dan komunikasi penting lainnya.</li>
+                        <li>Menganalisis anomali dan meningkatkan integritas sistem keamanan kami.</li>
+                    </ul>
+
+                    <h3>3.0 Transmisi Data ke Pihak Ketiga</h3>
+                    <p>Kami tidak akan memperdagangkan atau menyewakan data pribadi Anda. Transmisi data ke pihak ketiga (misalnya, gateway pembayaran terenkripsi, kurir logistik) hanya dilakukan untuk menyelesaikan fungsi inti layanan kami. Semua mitra terikat oleh protokol kerahasiaan yang ketat.</p>
+
+                    <h3>4.0 Integritas & Enkripsi Data</h3>
+                    <p>Setiap transmisi data sensitif diamankan menggunakan enkripsi Transport Layer Security (TLS) tingkat lanjut. Data Anda disimpan dalam pangkalan data yang terlindungi oleh firewall berlapis dan protokol keamanan siber terkini untuk mencegah akses tidak sah.</p>
+
+                    <h3>5.0 Kedaulatan Data Anda</h3>
+                    <p>Anda memiliki kedaulatan penuh atas jejak digital Anda. Anda berhak untuk:</p>
+                     <ul class="policy-list mt-4 text-gray-300">
+                        <li>Mengakses dan meninjau data pribadi yang kami simpan.</li>
+                        <li>Meminta koreksi atau pembaruan pada data yang tidak akurat.</li>
+                        <li>Meminta penghapusan jejak digital Anda dari sistem kami (hak untuk dilupakan).</li>
+                        <li>Menolak komunikasi pemasaran di masa mendatang.</li>
+                    </ul>
+                    <p class="mt-4">Untuk menggunakan hak-hak ini, silakan hubungi Petugas Data kami melalui saluran di halaman Kontak.</p>
+
+                    <h3>6.0 Evolusi Protokol</h3>
+                    <p>Seiring berkembangnya teknologi dan lanskap digital, protokol ini dapat berevolusi. Setiap perubahan signifikan akan dikomunikasikan kepada Anda melalui saluran utama kami. Versi protokol yang berlaku adalah yang ditampilkan di domain ini pada waktu tertentu.</p>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h4>Lumakara</h4>
+                        <p>Pengalaman belanja imersif untuk era digital.</p>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Jelajahi</h4>
+                        <ul>
+                            <li><a href="toko.html">Toko</a></li>
+                            <li><a href="unggulan.html">Unggulan</a></li>
+                            <li><a href="tentang.html">Tentang Kami</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Dukungan</h4>
+                        <ul>
+                            <li><a href="kontak.html">Kontak & FAQ</a></li>
+                            <li><a href="#">Pengiriman & Pengembalian</a></li>
+                            <li><a href="kbjpriv.html">Kebijakan Privasi</a></li>
+                        </ul>
+                    </div>
+                     <div class.blade.php"footer-column">
+                        <h4>Ikuti Kami</h4>
+                        <div class="social-icons !justify-start mt-4">
+                            <a href="#" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <p class="copyright pt-8 border-t border-gray-800">&copy; <span id="current-year"></span> Lumakara. Semua Hak Cipta Dilindungi.</p>
+            </div>
+        </footer>
+
+        <!-- Modal tidak diperlukan di halaman ini -->
+        <div id="product-modal" class="modal"></div>
+
+        <!-- Library JavaScript Eksternal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+        
+        <!-- Skrip Utama -->
+        <script src="script.js"></script>
+    </body>
+</html>
+
